@@ -14,7 +14,8 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $mahasiswa = DB::table('buku')->get();
+        $mahasiswa = DB::table('buku')->select('buku_id', 'buku_judul', 'kategori_id', 'buku_deskripsi', 'buku_jumlah', 'buku_cover') -> get();
+        
         return view('mahasiswa_0077', ['mahasiswa_0077' => $mahasiswa]);
 
     }
