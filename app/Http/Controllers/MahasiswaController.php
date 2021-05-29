@@ -16,8 +16,9 @@ class MahasiswaController extends Controller
     {
         $mahasiswa = DB::table('buku')->get();
         return view('mahasiswa_0077', ['mahasiswa_0077' => $mahasiswa]);
-    }
 
+    }
+    
     /**
      * Show the form for creating a new resource.
      *
