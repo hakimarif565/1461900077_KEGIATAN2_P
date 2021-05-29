@@ -2,10 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\anggota;
+use App\Models\kategori;
+use App\Models\buku;
+use App\Models\pinjam;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Perpustakaan;
 
-class MahasiswaController extends Controller
+class PerpusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,15 +18,18 @@ class MahasiswaController extends Controller
      */
     public function index()
     {
-        $mahasiswa = DB::table('buku')->select('buku_id', 'buku_judul', 'kategori_id', 'buku_deskripsi', 'buku_jumlah', 'buku_cover') -> get();
-        $mahasiswa = DB::table('buku')->selectLike('1', 'buku_id') -> get();
-        $mahasiswa = DB::table('buku')->selectJoin('buku_id', 'buku_judul', '=', 'buku_id.buku_judul') ->get();
-        $mahasiswa = DB::table('buku')->selectJoin('buku_id', 'buku_judul', '=', 'buku_id.buku_judul') 
-        -> selectLike('buku_id') ->get();
-        return view('mahasiswa_0077', ['mahasiswa_0077' => $mahasiswa]);
-
+        $check = "Arif";   //Isi sebagai pengambilan pada method LIKE
+        $anggota = anggota::all(); //select all
+        $book = buku::join('kategori','buku.kategori_id','=','kategori.kategori_id')->get(); //join saja
+        $like = anggota::where('anggota_nama','LIKE','%'.$check.'%')->get();
+        
+        return view('perpus0077',[
+            'anggota' => $anggota,
+            'book'=>$book,
+            'like' =>$like
+        ]);
     }
-    
+
     /**
      * Show the form for creating a new resource.
      *

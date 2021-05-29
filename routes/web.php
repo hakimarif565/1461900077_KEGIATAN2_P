@@ -1,8 +1,7 @@
 <?php
 
-use App\Http\Controllers\MahasiswaController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\PerpusController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,4 +17,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/mahasiswa_0077', 'App\Http\Controllers\MahasiswaController@index');
+Route::get('mahasiswa', 'App\Http\Controllers\PerpusController@index');
